@@ -12,7 +12,78 @@ void func_8001D87C(void) {
 // https://decomp.me/scratch/zigZT
 INCLUDE_ASM("asm/nonmatchings/camera", func_8001D8A4);
 
-INCLUDE_ASM("asm/nonmatchings/camera", func_8001DB58);
+//INCLUDE_ASM("asm/nonmatchings/camera", func_8001DB58);
+void func_8001DB58(void)
+{
+    int wrappedDiff;
+    int specialValue;
+    int wrappedDiffB8;
+    int value98;
+    int valueAC;
+    int value94;
+    int valueA8;
+    int differenceC0;
+    int wrappedDiffBC;
+
+    /*
+     * Calculate the wrapped difference for offset 0xB8.
+     * A nonzero value at 0x150 overrides the calculation.
+     */
+    specialValue = g_Camera.m_0x150;
+
+    if (specialValue == 0) {
+        wrappedDiffB8 =
+            (g_Camera.m_0x90 - g_Camera.m_0xA4) & 0xFFF;
+
+        g_Camera.m_0xB8 = wrappedDiffB8;
+
+        if (wrappedDiffB8 >= 0x801) {
+            specialValue = wrappedDiffB8 - 0x1000;
+            g_Camera.m_0xB8 = specialValue;
+        }
+    } else {
+        g_Camera.m_0xB8 = specialValue;
+    }
+
+    /*
+     * Calculate the direct difference at 0xC0 and the
+     * wrapped difference at 0xBC.
+     */
+    value98 = g_Camera.m_0x98;
+    valueAC = g_Camera.m_0xAC;
+    value94 = g_Camera.m_0x94;
+    valueA8 = g_Camera.m_0xA8;
+
+    differenceC0 = value98 - valueAC;
+    wrappedDiffBC = (value94 - valueA8) & 0xFFF;
+
+    g_Camera.m_0xC0 = differenceC0;
+    g_Camera.m_0xBC = wrappedDiffBC;
+
+    if (wrappedDiffBC >= 0x801) {
+        g_Camera.m_0xBC = wrappedDiffBC - 0x1000;
+    }
+
+    /* Calculate the wrapped difference at 0xC4. */
+    wrappedDiff =
+        (g_Camera.m_0x9C - g_Camera.m_0xB0) & 0xFFF;
+
+    g_Camera.m_0xC4 = wrappedDiff;
+
+    if (wrappedDiff >= 0x801) {
+        g_Camera.m_0xC4 = wrappedDiff - 0x1000;
+    }
+
+    /* Calculate the wrapped difference at 0xC8. */
+    wrappedDiff =
+        (g_Camera.m_0xA0 - g_Camera.m_0xB4) & 0xFFF;
+
+    g_Camera.m_0xC8 = wrappedDiff;
+
+    if (wrappedDiff >= 0x801) {
+        g_Camera.m_0xC8 = wrappedDiff - 0x1000;
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/camera", func_8001DC6C);
 

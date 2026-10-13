@@ -28,7 +28,29 @@ typedef struct {
     unsigned char unk_0x5C;          // 0x5C; read and cleared as a byte
     char pad_0x5D[3];                // 0x5D–0x5F
 
-    char unk_0x60[0x108];            // 0x60–0x167; many fields remain unmapped
+    char pad_0x60[0x30];             // 0x60–0x8F
+
+    int m_0x90;                      // 0x90
+    int m_0x94;                      // 0x94
+    int m_0x98;                      // 0x98
+    int m_0x9C;                      // 0x9C
+    int m_0xA0;                      // 0xA0
+
+    int m_0xA4;                      // 0xA4
+    int m_0xA8;                      // 0xA8
+    int m_0xAC;                      // 0xAC
+    int m_0xB0;                      // 0xB0
+    int m_0xB4;                      // 0xB4
+
+    int m_0xB8;                      // 0xB8
+    int m_0xBC;                      // 0xBC
+    int m_0xC0;                      // 0xC0
+    int m_0xC4;                      // 0xC4
+    int m_0xC8;                      // 0xC8
+
+    char pad_0xCC[0x84];             // 0xCC–0x14F
+    int m_0x150;                     // 0x150; overrides result at 0xB8 when nonzero
+    char pad_0x154[0x14];            // 0x154–0x167
 
     int m_0x168;                     // 0x168
     int m_0x16C;                     // 0x16C
